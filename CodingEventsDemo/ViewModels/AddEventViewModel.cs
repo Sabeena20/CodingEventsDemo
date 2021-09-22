@@ -15,5 +15,13 @@ namespace CodingEventsDemo.ViewModels
 
         [EmailAddress]
         public string ContactEmail { get; set; }
+
+        [Required(ErrorMessage = "Please enter the location of the event")]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "Location must be between 3 and 20 characters.")]
+        public string EventLocation { get; set; }
+
+        [Required(ErrorMessage = "Please enter the number of people attending")]
+        [Range(0, 100000)]
+        public int NoOfAttendees { get; set; }
     }
 }
