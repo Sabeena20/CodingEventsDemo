@@ -15,6 +15,10 @@ namespace CodingEventsDemo
 {
     public class Startup
     {
+        private const string Name = "DefaultConnection";
+
+        private MySqlServerVersion version = new MySqlServerVersion(new Version("5.0.2"));
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -26,8 +30,9 @@ namespace CodingEventsDemo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddDbContext<EventDbContext>(options =>
-                options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
+            //services.AddDbContext<EventDbContext>(options =>
+            //    options.UseMySql(Configuration.GetConnectionString(Name)));
+            services.AddDbContext<EventDbContext>(options => options.UseMySql(Configuration.GetConnectionString(Name), version, null));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
