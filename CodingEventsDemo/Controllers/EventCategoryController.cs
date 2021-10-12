@@ -1,4 +1,5 @@
 ﻿using CodingEventsDemo.Data;
+using CodingEventsDemo.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,16 +10,19 @@ namespace CodingEventsDemo.Controllers
 {
     public class EventCategoryController : Controller
     {
-        private EventDbContext category;
+        private EventDbContext context;
 
         public EventCategoryController(EventDbContext dbContext)
         {
-            category = dbContext;
+            context = dbContext;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            List<EventCategory> categories = context.Categories.ToList();
+
+            return View(categories);
         }
     }
 }
