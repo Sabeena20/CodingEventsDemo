@@ -32,6 +32,7 @@ namespace CodingEventsDemo.Controllers
 
             return View(addEventCategoryViewModel);
         }
+        [HttpPost]
         public IActionResult ProcessCreateEventCategoryForm(AddEventCategoryViewModel addEventCategoryViewModel)
         {
             if (ModelState.IsValid)
@@ -43,10 +44,10 @@ namespace CodingEventsDemo.Controllers
                 context.Categories.Add(newEventCategory);
                 context.SaveChanges();
 
-                return Redirect("/Eventcategory");
+                return Redirect("/EventCategory");
 
             }
-            return View(addEventCategoryViewModel);
+            return View("Create",addEventCategoryViewModel);
 
         }
     }
